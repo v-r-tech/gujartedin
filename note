@@ -1,0 +1,148 @@
+#!/bin/bash
+###########################################
+#Author:  mrsh
+#Date:  Sunday 10 December 2023 03:31:07 PM IST
+#Description:  This script to create auto dns and configure.
+#Modified:  Sunday 10 December 2023 03:31:07 PM IST
+#########################################
+systemctl stop named
+
+#host_name=$(hostname | awk -F"." '{print $1}')
+#echo "Enter Domain name as you wish"
+#read -r "domain_name"
+#hostname --static set-hostname "${host_name}."$domain_name""
+#fqdomain_name=$(hostname)
+echo
+#echo $#domain_name
+#echo $fqdomain_name
+~
+# domain_name=mrshfm.com
+name_file="/etc/name.conf"
+#forword_file="/var/named/forward."$domain_name""
+#reverse_file="/var/named/reverse."$domain_name""
+
+# List the available network interfaces.
+net_int_ip=$(ifconfig | awk -F' ' ' FNR==2 {print $2}')
+echo $net_int_ip
+
+echo "$net_int_ip       "$domain_name"" >> /etc/hosts      # save ip and dns in hosts
+
+# Install the packages for DNS server.
+#yum install -y bind bind-utils
+
+# Configure the "named" server configuration file
+# With the IP address at line 13.
+sed -i  "/127.0.0.1/ s/;/;${net_int_ip};8.8.8.8/1" /etc/named.conf
+
+#Enable firewall rools thats permit DNS traffic.
+
+firewall_array=('--add-service=dns --permanent --zone=public' '--permanent --zone=public --add-port=53/tcp' '--permanent --zone=public --add-port=53/udp' '--reload' '--list-all')
+
+for i in "${firewall_array[@]}"
+do
+        sudo firewall-cmd $i
+done
+
+
+############################################################################
+
+net_int_ip=$(ifconfig | awk -F' ' 'FNR==2 {print $2}')
+domain_name=mrshfm.com    # Allways use inverted comma for one more word string
+# Assign array of fully qualify dns name.
+con_name=$(ifconfig | awk -F':' 'FNR==1 {print $1}')
+nmcli con modify $con_name ipv4.dns-search `hostname`.$domain_name ipv4.dns $net_int_ip +ipv4.dns 8.8.8.8
+
+#restart network
+systemctl restart NetworkManager
+sleep 3
+# configure a primary zone for dns server.
+# Insrt 12 blank lines at line NO 59
+sed -i '59s/^/\n\n\n\n\n\n\n\n\n\n\n\n\n/' /etc/named.conf
+
+# Insert 'zone "[domain_name]" IN {' at line 59
+sed -i '59s/^/zone\t "'$domain_name'" IN {/' /etc/named.conf
+sed -i '60s/^/\t type master;/' /etc/named.conf
+
+sed -i '61s/^/\t file "forward.'$domain_name'"\;/' /etc/named.conf
+sed -i '62s/^/\t allow-update { none; };/' /etc/named.conf
+sed -i '63s/^/};/' /etc/named.conf
+
+# Reverse zone
+# Insert 'zone "21.168.192.in-addr.arpa" IN {' at line 66
+sed -i '66s/^/zone\t "19.168.192.in-addr.arpa" IN { /' /etc/named.conf
+sed -i '67s/^/\t type master;/' /etc/named.conf
+sed -i '68s/^/\t file "reverse.'$domain_name'";/' /etc/named.conf
+sed -i '69s/^/\t allow-update { none; };/' /etc/named.conf
+sed -i '70s/^/};/' /etc/named.conf
+
+# copy default forward file to new file
+cp /var/named/named.localhost /var/named/forward."$domain_name"
+
+# Edit line No 2 as "@   IN  SOA     mdnsrv.slab.local. root.slab.local."
+sed -i -e "2s/@ rname.invalid/`hostname`.${domain_name}. root.$domain_name/" /var/named/forward."$domain_name"
+serial=`date "+%y%m%d"`
+sed -i -e "3s/0/${serial}/" /var/named/forward."$domain_name"
+# Remove the last 3 lines of  the forward zone file
+for i in $(seq 1 3)
+do
+    sed -i '$d' /var/named/forward."$domain_name"
+done
+
+# Add dns record to the end of the forward zone line.
+echo "
+@       	IN  NS  rhel9s.$domain_name.
+@       	IN  A  	$net_int_ip
+rhel9s		IN  A   $net_int_ip" >> /var/named/forward."$domain_name" 
+
+# Configure reverse zone file.
+cp /var/named/forward."$domain_name" /var/named/reverse."$domain_name"
+
+# Edit line 10 as '@IN PTNR [local.domain].'
+sed -i -e "10s/A/PTR/;10s/${net_int_ip}/`hostname`${domain_name}./" /var/named/reverse."$domain_name"
+
+# Add PTR record to the end of the reverse file.
+echo -e "10 \tIN PTR `hostname`."$domain_name"." >> /var/named/reverse."$domain_name"
+
+# Configure the ownership of the forward and reverse zone files.
+chown root:named /var/named/forward."$domain_name"
+chown root:named /var/named/reverse."$domain_name"
+
+# change permision
+chgrp named -R /var/named
+chown -v root:named /etc/named.conf
+restorecon -rv /var/named
+restorecon /etc/named.conf
+
+# veryfy the vailidity of the DNS servers's configureation files.
+named-checkconf -z /etc/named.conf
+
+named-checkzone 'reverse.${domain_name}' "/var/named/reverse.$domain_name"
+named-checkzone 'forward.${domain_name}' "/var/named/forward.$domain_name"
+
+
+#  Enable, start and verify status of "named"
+arr=("enable" "start" "--no-pager status")
+for i in ${arr[@]}
+do 
+	systemctl $i named & 
+done
+
+sleep 5
+
+
+# Restart the DNS server.
+#systemctl restart named
+
+
+
+dns_name="`hostname`.$domain_name"
+# DNS test report
+dig $dns_name
+echo
+echo
+nslookup $dns_name
+echo
+echo
+nslookup $net_int_ip
+
+

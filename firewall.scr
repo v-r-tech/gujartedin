@@ -1,0 +1,6 @@
+firewall_array=('--add-service=dns --permanent --zone=public' '--permanent --zone=public --add-port=53/tcp' '--permanent --zone=public --add-port=53/udp' '--reload' '--list-all')
+for i in "${firewall_array[@]}"
+do
+        sudo firewall-cmd $i
+done
+~

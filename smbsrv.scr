@@ -1,0 +1,75 @@
+#!/bin/bash
+###########################################
+#Author:  mrsh
+#Date:  Thursday 21 December 2023 07:09:18 PM IST
+#Description:  This is script for auto creating smb server.
+#Modified:  Thursday 21 December 2023 07:09:18 PM IST
+###########################################
+
+# Install all requred samba packages
+yum install samba samba-client samba-common -y
+
+firewall-cmd --permanent --zone=public --add-service=samba
+
+firewall-cmd --reload
+
+# Create Samba share directory and assign permissions
+mkdir -p /samba/sambag
+
+chmod a+rwx /samba/sambag
+
+chown -R nobody:nobody /samba
+
+# Also, you need to change the SELinux security context for the samba shared directory
+chcon -t samba_share_t /samba/sambag
+
+# Modify /etc/samba/smb.conf file to add new shared filesystem 
+# (Make sure to create a copy of smb.conf file)
+
+cp /etc/samba/smb.conf /etc/samba/smb.conf.orig
+
+# Remove after 9 every line
+sed -i '1,9!d' /etc/samba/smb.conf
+
+# Add thease line in smb conf file
+
+echo "
+[global]
+workgroup = SAMBA-WG
+server string = Samba Server %v
+netbios name = rocky-8
+security = user
+map to guest = bad user
+dns proxy = no
+ntlm auth = true
+
+
+
+[Public]
+Path =  /samba/sambag
+browsable =yes
+writable = yes
+guest ok = yes
+read only = no" >> /etc/samba/smb.conf
+
+testparm
+
+firewall-cmd --permanent --add-service=samba
+firewall-cmd --reload
+
+systemctl enable --now smb
+systemctl enable --now nmb
+
+# User add -M mean home dir less and -s mean shell 
+useradd -M -s /sbin/nologin smbu
+# To take auto given pass by sdnin option
+echo "D0min0s@2024" | passwd --stdin smbu
+
+# Add the user to the Samba database and set a password to the account:
+echo -e "D0min0s@2024\nD0min0s@2024\n" | smbpasswd -a -s smbu
+
+# Enable the Samba account:
+ smbpasswd -e smbu
+
+# Next run client script in client machine.
+

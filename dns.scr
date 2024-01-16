@@ -1,0 +1,31 @@
+#!/bin/bash
+###########################################
+#Author:  mrsh
+#Date:  Sunday 10 December 2023 03:31:07 PM IST
+#Description:  This script to create auto dns and configure.
+#Modified:  Sunday 10 December 2023 03:31:07 PM IST
+#########################################
+
+host_name=$(hostname | awk -F"." '{print $1}') # store only hostname in vairble.
+echo 'Enter a new domain name for you system: '
+read -r domain_name
+hostnamectl --static set-hostname "${host_name}.$domain_name"
+fqdomain_name=$(hostname)
+
+# Assign the configuration file to variables.
+name_file="/etc/name.conf"
+forword_file="/var/named/forward.$domain_name"
+reverse_file="/var/named/reverse.$domain_name"
+
+# List the available network interfaces.
+net_int_ip=$(ifconfig | awk -F' ' ' FNR==2 {print $2}')
+echo $net_int_ip
+
+echo "$net_int_ip	$domain_name" >> /etc/hosts      # save ip and dns in hosts
+
+# Install the packages for DNS server.
+dnf install -y bind bind-utils
+
+# Configure the "named" server configuration file
+# With the IP address at line 13.
+sed -i "13s/^\(.\{32\}\)/\1$net_int_ip; /" $name_file

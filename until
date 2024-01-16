@@ -1,0 +1,25 @@
+#!/bin/bash
+condition=false
+inv= make model serial year
+until $condition
+	for i in $inv
+		do
+			read -p "make " make
+			read -p "model " model
+			read -p "serial " serial
+			read -p " year " year
+			echo $make $model $serial $year >> inventory
+			echo
+cat inventory
+echo do you want to add more ?
+read c
+if  [ $c == y ]
+then
+	condition=false
+	(($inv++))
+    sleep 1
+elif [ $c == n ]
+then 
+	exit 0
+fi
+done

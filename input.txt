@@ -1,0 +1,6 @@
+zone "21.168.192.in-addr.arpa" IN { 
+ 	type master;  	
+	file "reverse.lab";
+	allow-update { none; }; 
+};
+

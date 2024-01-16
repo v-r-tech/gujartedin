@@ -1,0 +1,17 @@
+#!/bin/bash
+###########################################
+#Author:  mrsh
+#Date:  Sunday 10 December 2023 03:29:56 PM IST
+#Description:  This script create auto dns and then comfigure.
+#Modified:  Sunday 10 December 2023 03:29:56 PM IST
+###########################################
+
+yum install bind bind-utils –y
+
+sed -i  '/127.0.0.0/ s/;/;192.168.19.1;/2' /etc/named.conf
+
+sed -i -r '/zone/ s/\./mrshfm.com/' /etc/named.conf
+
+sed -i -r '/type/ s/hint/master/' named.conf
+sed -i -r '/file/ s/named\.ca/fb.zone/' named.conf
+

@@ -1,0 +1,15 @@
+#!/bin/bash
+###########################################
+#Author:  mrsh
+#Date:  Sunday 05 November 2023 09:00:26 PM IST
+#Description:Log alert ant mail
+#Modified:  Sunday 05 November 2023 09:00:26 PM IST
+###########################################
+
+systems="gujartedin@gmail.com,ukp189@gmail.com"
+if [ -s /tmp/filtered-messages ]
+then
+	cat /emp/filtered-messages | sort |uniq | mail -s "CHECK: syslog error" $systemS
+	rm /tmp/filtered-messages
+else
+fi

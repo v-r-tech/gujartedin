@@ -1,0 +1,1 @@
+with the second way, you are replacing matched string with the new one, so you must include it at the end the replacement stringIf you want it to be inserted before the given string but in the same line, you can use sed substitution instead of inser

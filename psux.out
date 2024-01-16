@@ -1,0 +1,81 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+ricardo     1446  0.0  0.2  21644 11536 ?        Ss   Sep10   0:00 /usr/lib/systemd/systemd --user
+ricardo     1448  0.0  0.1  49212  5848 ?        S    Sep10   0:00 (sd-pam)
+ricardo     1459  0.0  0.1 447560  7148 ?        Sl   Sep10   0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+ricardo     1467  0.0  0.1 369144  6080 tty2     Ssl+ Sep10   0:00 /usr/libexec/gdm-wayland-session /usr/bin/gnome-session
+ricardo     1469  0.0  0.1 277692  4112 ?        Ss   Sep10   0:00 /usr/bin/dbus-broker-launch --scope user
+ricardo     1471  0.0  0.1   6836  4408 ?        S    Sep10   0:00 dbus-broker --log 4 --controller 11 --machine-id 16355057c7274843823dd747f8e2978b --max-bytes 100000000000000 --max-fds 25000000000000 --max-matches 5000000000
+ricardo     1474  0.0  0.3 467744 14132 tty2     Sl+  Sep10   0:00 /usr/libexec/gnome-session-binary
+ricardo     1531  0.0  0.1 297456  4280 ?        Ssl  Sep10   0:00 /usr/libexec/gnome-session-ctl --monitor
+ricardo     1532  0.0  0.3 1230908 12920 ?       S<sl Sep10   0:01 /usr/bin/pulseaudio --daemonize=no
+ricardo     1534  0.0  0.3 763340 15700 ?        Ssl  Sep10   0:00 /usr/libexec/gnome-session-binary --systemd-service --session=gnome
+ricardo     1553  5.1  9.5 4422768 385276 ?      Rsl  Sep10   5:32 /usr/bin/gnome-shell
+ricardo     1594  0.0  0.1 305300  6044 ?        Ssl  Sep10   0:00 /usr/libexec/at-spi-bus-launcher
+ricardo     1599  0.0  0.0 268468  3452 ?        S    Sep10   0:00 /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user
+ricardo     1600  0.0  0.0   5268  2872 ?        S    Sep10   0:00 dbus-broker --log 4 --controller 9 --machine-id 16355057c7274843823dd747f8e2978b --max-bytes 100000000000000 --max-fds 6400000 --max-matches 5000000000
+ricardo     1603  0.0  1.2 434292 49380 ?        Sl   Sep10   0:00 /usr/bin/Xwayland :0 -rootless -noreset -accessx -core -auth /run/user/1000/.mutter-Xwaylandauth.A5JOQ0 -listen 4 -listen 5 -displayfd 6 -listen 7
+ricardo     1607  0.0  0.1 447100  7556 ?        Ssl  Sep10   0:00 /usr/libexec/gvfsd
+ricardo     1612  0.0  0.1 380056  6236 ?        Sl   Sep10   0:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
+ricardo     1634  0.0  0.1 443068  4632 ?        Ssl  Sep10   0:00 /usr/libexec/xdg-permission-store
+ricardo     1638  0.0  0.5 593016 21548 ?        Ssl  Sep10   0:00 /usr/libexec/gnome-shell-calendar-server
+ricardo     1644  0.0  0.6 1287792 27024 ?       Ssl  Sep10   0:00 /usr/libexec/evolution-source-registry
+ricardo     1650  0.0  0.9 893328 37444 ?        Ssl  Sep10   0:00 /usr/libexec/goa-daemon
+ricardo     1655  0.0  0.6 1125416 28032 ?       Ssl  Sep10   0:00 /usr/libexec/evolution-calendar-factory
+ricardo     1662  0.0  0.1 156108  4932 ?        Ssl  Sep10   0:00 /usr/libexec/dconf-service
+ricardo     1672  0.0  0.2 524460  8124 ?        Ssl  Sep10   0:00 /usr/libexec/goa-identity-service
+ricardo     1684  0.0  0.2 534980 10284 ?        Ssl  Sep10   0:00 /usr/libexec/gvfs-udisks2-volume-monitor
+ricardo     1691  0.0  0.6 957304 25652 ?        Ssl  Sep10   0:00 /usr/libexec/evolution-addressbook-factory
+ricardo     1696  0.0  0.1 443156  6424 ?        Ssl  Sep10   0:00 /usr/libexec/gvfs-mtp-volume-monitor
+ricardo     1703  0.0  0.1 520520  7496 ?        Ssl  Sep10   0:00 /usr/libexec/gvfs-afc-volume-monitor
+ricardo     1711  0.0  0.1 443240  5976 ?        Ssl  Sep10   0:00 /usr/libexec/gvfs-goa-volume-monitor
+ricardo     1716  0.0  0.1 445424  6728 ?        Ssl  Sep10   0:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+ricardo     1725  0.0  0.5 2784244 24040 ?       Ssl  Sep10   0:00 /usr/bin/gjs /usr/share/gnome-shell/org.gnome.Shell.Notifications
+ricardo     1727  0.0  0.1 160772  6964 ?        Ssl  Sep10   0:00 /usr/libexec/at-spi2-registryd --use-gnome-session
+ricardo     1736  0.0  0.1 518436  6944 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-a11y-settings
+ricardo     1737  0.0  0.6 631272 24776 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-color
+ricardo     1739  0.0  0.3 550516 15664 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-datetime
+ricardo     1747  0.0  0.1 519396  7728 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-housekeeping
+ricardo     1751  0.0  0.5 545176 22724 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-keyboard
+ricardo     1754  0.0  0.6 821448 26220 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-media-keys
+ricardo     1755  0.0  0.5 555208 23924 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-power
+ricardo     1756  0.0  0.2 167124  9156 ?        Ssl  Sep10   0:00 /usr/bin/spice-vdagent
+ricardo     1760  0.0  0.3 468204 12948 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-print-notifications
+ricardo     1761  0.0  0.1 665896  6424 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-rfkill
+ricardo     1763  0.0  0.1 444320  6576 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-screensaver-proxy
+ricardo     1766  0.0  0.2 673724 10904 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-sharing
+ricardo     1781  0.0  0.2 598328 11620 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-smartcard
+ricardo     1783  0.0  0.2 526344  9500 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-sound
+ricardo     1793  0.0  0.1 592620  7164 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-usb-protection
+ricardo     1803  0.0  0.5 545624 23240 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-wacom
+ricardo     1812  0.0  0.2 522816  8656 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-wwan
+ricardo     1867  0.0  0.4 550896 16316 ?        Sl   Sep10   0:00 /usr/libexec/gsd-printer
+ricardo     1882  0.1  0.2 528068  9380 ?        Sl   Sep10   0:08 ibus-daemon --panel disable -r --xim
+ricardo     1888  0.0  1.5 948672 60508 ?        Ssl  Sep10   0:00 /usr/libexec/gsd-xsettings
+ricardo     1903  0.0  0.1 444004  7284 ?        Sl   Sep10   0:00 /usr/libexec/ibus-dconf
+ricardo     1904  0.0  0.6 549092 26784 ?        Sl   Sep10   0:02 /usr/libexec/ibus-extension-gtk3
+ricardo     1908  0.0  1.4 799868 58568 ?        Sl   Sep10   0:00 /usr/libexec/ibus-x11 --kill-daemon
+ricardo     1909  0.0  0.1 443888  7292 ?        Ssl  Sep10   0:00 /usr/libexec/ibus-portal
+ricardo     1959  0.0  0.1 370080  7024 ?        Sl   Sep10   0:02 /usr/libexec/ibus-engine-simple
+ricardo     1994  0.0  5.5 1173996 224028 ?      Sl   Sep10   0:03 /usr/bin/gnome-software --gapplication-service
+ricardo     1996  0.0  1.4 842408 56628 ?        Sl   Sep10   0:00 /usr/libexec/evolution-data-server/evolution-alarm-notify
+ricardo     2004  0.0  0.1 231916  5188 ?        Sl   Sep10   0:00 /usr/libexec/gsd-disk-utility-notify
+ricardo     2010  0.0  0.7 801644 28848 ?        SNl  Sep10   0:00 /usr/libexec/tracker-miner-fs
+ricardo     2011  0.0  0.5 486112 21668 ?        Ssl  Sep10   0:00 /usr/bin/abrt-applet --gapplication-service
+ricardo     2110  0.0  0.1 369700  6436 ?        Ssl  Sep10   0:00 /usr/libexec/gvfsd-metadata
+ricardo     2172  0.6  1.4 618204 56696 ?        Ssl  Sep10   0:41 /usr/libexec/gnome-terminal-server
+ricardo     2177  0.0  0.1 227512  5632 pts/0    Ss   Sep10   0:00 bash
+ricardo     2237  0.0  0.1 227512  5696 pts/2    Ss+  Sep10   0:00 bash
+ricardo     6374 66.2  7.4 2896992 301212 ?      Rl   00:15   0:04 /usr/lib64/firefox/firefox
+ricardo     6442  8.3  2.9 2621944 118220 ?      Sl   00:15   0:00 /usr/lib64/firefox/firefox -contentproc -childID 1 -isForBrowser -prefsLen 1 -prefMapSize 226342 -parentBuildID 20200904083306 -appdir /usr/lib64/firefox/browser 6374 true tab
+ricardo     6484 15.6  4.1 2671756 168468 ?      Rl   00:15   0:00 /usr/lib64/firefox/firefox -contentproc -childID 2 -isForBrowser -prefsLen 177 -prefMapSize 226342 -parentBuildID 20200904083306 -appdir /usr/lib64/firefox/browser 6374 true tab
+ricardo     6513  9.0  2.5 2611580 101520 ?      Sl   00:15   0:00 /usr/lib64/firefox/firefox -contentproc -childID 3 -isForBrowser -prefsLen 6463 -prefMapSize 226342 -parentBuildID 20200904083306 -appdir /usr/lib64/firefox/browser 6374 true tab
+ricardo     6568 31.5  4.8 2791780 194336 ?      Rl   00:15   0:01 /usr/lib64/firefox/firefox -contentproc -childID 5 -isForBrowser -prefsLen 7365 -prefMapSize 226342 -parentBuildID 20200904083306 -appdir /usr/lib64/firefox/browser 6374 true tab
+ricardo     6607 20.6  2.7 2616500 111864 ?      Sl   00:15   0:00 /usr/lib64/firefox/firefox -contentproc -childID 6 -isForBrowser -prefsLen 7365 -prefMapSize 226342 -parentBuildID 20200904083306 -appdir /usr/lib64/firefox/browser 6374 true tab
+ricardo     6633 31.0  4.0 2702140 163440 ?      Rl   00:15   0:00 /usr/lib64/firefox/firefox -contentproc -childID 7 -isForBrowser -prefsLen 7365 -prefMapSize 226342 -parentBuildID 20200904083306 -appdir /usr/lib64/firefox/browser 6374 true tab
+ricardo     6679  0.0  0.9 407564 38496 ?        Rl   00:15   0:00 /usr/lib64/firefox/firefox -contentproc -childID 8 -isForBrowser -prefsLen 7365 -prefMapSize 226342 -parentBuildID 20200904083306 -appdir /usr/lib64/firefox/browser 6374 true tab
+ricardo     6680  0.0  4.3 2896992 174636 ?      S    00:15   0:00 /usr/lib64/firefox/firefox
+ricardo     6681  0.0  0.9 388904 37264 ?        Rl   00:15   0:00 /usr/lib64/firefox/firefox -contentproc -childID 9 -isForBrowser -prefsLen 7365 -prefMapSize 226342 -parentBuildID 20200904083306 -appdir /usr/lib64/firefox/browser 6374 true tab
+ricardo     6683  0.0  0.7 166976 30608 ?        R    00:15   0:00 /usr/lib64/firefox/firefox -contentproc -childID 10 -isForBrowser -prefsLen 7365 -prefMapSize 226342 -parentBuildID 20200904083306 -appdir /usr/lib64/firefox/browser 6374 true tab
+ricardo     6684  0.0  4.3 2896992 174636 ?      S    00:15   0:00 /usr/lib64/firefox/firefox
+ricardo     6685  0.0  4.3 2896992 174660 ?      S    00:15   0:00 /usr/lib64/firefox/firefox
+ricardo     6695  0.0  0.0 228432  3996 pts/0    R+   00:15   0:00 ps ux

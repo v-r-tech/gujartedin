@@ -1,0 +1,23 @@
+#!/bin/bash
+###########################################
+#Author:  mrsh
+#Date:  Sunday 05 November 2023 03:50:46 PM IST
+#Description:  Central logging messages.
+#Modified:  Sunday 05 November 2023 03:50:46 PM IST
+###########################################
+
+tail -fn0 /var/log/messages | while read line
+
+do
+
+	echo $line | egrep -i "refused|invalid|error|fail|lost|shut|down|offline|error|permission"
+
+        if [ $? = 0 ]
+
+        then
+
+        echo $line >> /tmp/filtered-messages
+
+        fi
+
+done

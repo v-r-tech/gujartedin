@@ -1,0 +1,53 @@
+
+
+	his is my new line 3
+ this is my new line 3
+
+zone "21.168.192.in-addr.arpa" IN { type master; file "reverse.lab"; allow-update { none; }; };
+
+
+zone "21.168.192.in-addr.arpa" IN {
+10 hello 
+hello 
+
+hello 
+hello 
+
+hello 
+This is Line 8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sfsfs
